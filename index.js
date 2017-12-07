@@ -22,6 +22,7 @@ app.post("/Nuance", function (req, res) {
     var alexa = Alexa.handler(req, res);
     alexa.registerHandlers(newSessionHandlers); //handlers contain alexa-sdk function based intent logic
     alexa.execute();
+    res.send('Uchiha');
     console.log(JSON.stringify(req.body));
 });
 //Configuring Entry Point
