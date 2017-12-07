@@ -2,42 +2,66 @@
 
 //imports
 var express = require('express');
-var bodyParser = require('body-parser');
+// var bodyParser = require('body-parser');
 // var request = require('request');
-var Alexa = require('alexa-sdk');
-
-var app = express();
-//Create express object
+// var Alexa = require('alexa-sdk'); // For AWS
+var Alexa = require('alexa-app');
 
 var port = process.env.PORT || 3000;
 //Assign port
 
-app.use(express.static(__dirname));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
-//Configuring express app behaviour
+var app = express();
+//Create express object
 
-app.get("/api", function (req, res) {
-    res.send("App works");
-  })
+var alexaApp = new Alexa.app("test");
 
-app.post("/Nuance", function (req, res) {
-    var body = req.body;
-    // var alexa = Alexa.handler(req, res);
-    // alexa.registerHandlers(newSessionHandlers); //handlers contain alexa-sdk function based intent logic
-    // alexa.execute();
-    // res.send('Uchiha');
-    console.log(JSON.stringify(req.body));
-});
+alexaApp.express({
+    expressApp: app,
+  
+    // verifies requests come from amazon alexa. Must be enabled for production.
+    // You can disable this if you're running a dev environment and want to POST
+    // things to test behavior. enabled by default.
+    checkCert: false,
+  
+    // sets up a GET route when set to true. This is handy for testing in
+    // development, but not recommended for production. disabled by default
+    debug: true
+  });
+
+  alexaApp.launch(function(request, response) {
+    response.say("You launched the app!");
+  });
+
+  alexaApp.dictionary = { "names": ["matt", "joe", "bob", "bill", "mary", "jane", "dawn"] };
+  
+  alexaApp.intent("nameIntent", {
+      "slots": { "NAME": "LITERAL" },
+      "utterances": [
+        "my {name is|name's} {names|NAME}", "set my name to {names|NAME}"
+      ]
+    },
+    function(request, response) {
+      response.say("Success!");
+    }
+  );
+
+// app.post("/Nuance", function (req, res) {
+//     var body = req.body;
+//     var alexa = Alexa.handler(req, res);
+//     alexa.registerHandlers(newSessionHandlers); //handlers contain alexa-sdk function based intent logic
+//     alexa.execute();
+//     // res.send('Uchiha');
+//     console.log(JSON.stringify(req.body));
+// });
 //Configuring Entry Point
 
-var newSessionHandlers = {
-    'LaunchRequest': function() {        
-                this.attributes['speechOutput']="Hello there! This is the launch request message. Place the default greeting message here. THis will play everytime you invoke the Alexa Skill."
-                this.attributes['repromptSpeech']="Are you there? This is the secondary waiting message prompt if you don't say anything or I don't here anything."
-                this.emit(':ask', this.attributes['speechOutput'],this.attributes['repromptSpeech']);
-            }
-};
+// var newSessionHandlers = {
+//     'LaunchRequest': function() {        
+//                 this.attributes['speechOutput']="Hello there! This is the launch request message. Place the default greeting message here. THis will play everytime you invoke the Alexa Skill."
+//                 this.attributes['repromptSpeech']="Are you there? This is the secondary waiting message prompt if you don't say anything or I don't here anything."
+//                 this.emit(':ask', this.attributes['speechOutput'],this.attributes['repromptSpeech']);
+//             }
+// };
 //Session Handling Point
 
 console.log("Server Running at Port : " + port);

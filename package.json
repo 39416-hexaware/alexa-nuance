@@ -9,6 +9,7 @@
   "author": "Mubashshir Mohammed A",
   "license": "ISC",
   "dependencies": {
+    "alexa-app": "^4.2.0",
     "alexa-sdk": "^1.0.23",
     "body-parser": "^1.18.2",
     "express": "^4.16.2",
