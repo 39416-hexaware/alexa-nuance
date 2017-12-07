@@ -13,7 +13,7 @@ var port = process.env.PORT || 3000;
 var app = express();
 //Create express object
 
-var alexaApp = new Alexa.app("test");
+var alexaApp = new Alexa.app("Nuance Bot");
 
 alexaApp.express({
     expressApp: app,
@@ -34,14 +34,10 @@ alexaApp.express({
 
   alexaApp.dictionary = { "names": ["matt", "joe", "bob", "bill", "mary", "jane", "dawn"] };
   
-  alexaApp.intent("nameIntent", {
-      "slots": { "NAME": "LITERAL" },
-      "utterances": [
-        "my {name is|name's} {names|NAME}", "set my name to {names|NAME}"
-      ]
-    },
+  alexaApp.intent("welcomeintent",
     function(request, response) {
-      response.say("Success!");
+        console.log(request);
+      response.say("HELLO THERE. I AM AN HDFC ASSISTASNT. YOU CAN ASK ME DETAILS ABOUT AN HDFC EMPLOYEE, YOUR PENDING SERVICE REQUESTS OR MAKING A NEW SERVICE REQUEST.!");
     }
   );
 
