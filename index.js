@@ -6,7 +6,7 @@ var bodyParser = require('body-parser');
 // var request = require('request');
 var Alexa = require('alexa-sdk');
 
-app = express();
+var app = express();
 //Create express object
 
 var port = process.env.PORT || 3000;
@@ -20,7 +20,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.get("/api", function (req, res) {
     res.send("App works");
   })
-  
+
 app.post("/Nuance", function (req, res) {
     var body = req.body;
     var alexa = Alexa.handler(req, res);
