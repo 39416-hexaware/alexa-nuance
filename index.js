@@ -23,10 +23,10 @@ app.get("/api", function (req, res) {
 
 app.post("/Nuance", function (req, res) {
     var body = req.body;
-    var alexa = Alexa.handler(req, res);
-    alexa.registerHandlers(newSessionHandlers); //handlers contain alexa-sdk function based intent logic
-    alexa.execute();
-    res.send('Uchiha');
+    // var alexa = Alexa.handler(req, res);
+    // alexa.registerHandlers(newSessionHandlers); //handlers contain alexa-sdk function based intent logic
+    // alexa.execute();
+    // res.send('Uchiha');
     console.log(JSON.stringify(req.body));
 });
 //Configuring Entry Point
