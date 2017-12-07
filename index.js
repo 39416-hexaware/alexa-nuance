@@ -17,6 +17,10 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 //Configuring express app behaviour
 
+app.get("/api", function (req, res) {
+    res.send("App works");
+  })
+  
 app.post("/Nuance", function (req, res) {
     var body = req.body;
     var alexa = Alexa.handler(req, res);
