@@ -1,0 +1,17 @@
+{
+  "name": "alexa-nuance",
+  "version": "1.0.0",
+  "description": "Alexa Nuance for HDFC",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "author": "Mubashshir Mohammed A",
+  "license": "ISC",
+  "dependencies": {
+    "alexa-sdk": "^1.0.23",
+    "body-parser": "^1.18.2",
+    "express": "^4.16.2",
+    "require": "^2.4.20"
+  }
+}
