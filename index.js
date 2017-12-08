@@ -31,6 +31,7 @@ alexaApp.express({
   alexaApp.launch(function(request, response) {
     console.log(JSON.stringify(request));
     response.say("HELLO THERE. I AM AN HDFC ASSISTANT. YOU CAN ASK ME DETAILS ABOUT AN HDFC EMPLOYEE, YOUR PENDING SERVICE REQUESTS OR MAKING A NEW SERVICE REQUEST.!");
+    response.reprompt("You there?");
   });
 
 //   alexaApp.dictionary = { "names": ["matt", "joe", "bob", "bill", "mary", "jane", "dawn"] };
