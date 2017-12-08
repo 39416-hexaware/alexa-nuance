@@ -17,38 +17,46 @@ var alexaApp = new Alexa.app("Nuance-Bot");
 
 alexaApp.express({
     expressApp: app,
-  
+
     // verifies requests come from amazon alexa. Must be enabled for production.
     // You can disable this if you're running a dev environment and want to POST
     // things to test behavior. enabled by default.
     checkCert: false,
-  
+
     // sets up a GET route when set to true. This is handy for testing in
     // development, but not recommended for production. disabled by default
     debug: true
-  });
+});
 
-  alexaApp.launch(function(request, response) {
+alexaApp.launch(function (request, response) {
     console.log(JSON.stringify(request));
     response.say("HELLO THERE. I AM AN HDFC ASSISTANT. YOU CAN ASK ME DETAILS ABOUT AN HDFC EMPLOYEE, YOUR PENDING SERVICE REQUESTS OR MAKING A NEW SERVICE REQUEST.!");
     response.reprompt("You there?");
-  });
+});
 
 //   alexaApp.dictionary = { "names": ["matt", "joe", "bob", "bill", "mary", "jane", "dawn"] };
-  
-  alexaApp.intent("employeedetailsIntent",
-    function(request, response) {
+
+alexaApp.intent("employeedetailsIntent",
+    function (request, response) {
         // console.log(JSON.stringify(request));
         console.log(JSON.stringify(request.slots));
-      response.say("LET ME SEE. THE MANAGER FOR HDFC MUMBAI OFFICE IS MANOHAR. PLEASE NOTE DOWN HIS CONTACT NUMBER. 9 7 4 8 9 7 8 8 1 2.!");
+        response.say("LET ME SEE. THE MANAGER FOR HDFC MUMBAI OFFICE IS MANOHAR. PLEASE NOTE DOWN HIS CONTACT NUMBER. 9 7 4 8 9 7 8 8 1 2.!");
     }
-  );
+);
 
-  alexaApp.intent("welcomeIntent",
-  function(request, response) {
-      console.log(JSON.stringify(request));
-    response.say("HELLO THERE. I AM AN HDFC ASSISTANT. YOU CAN ASK ME DETAILS ABOUT AN HDFC EMPLOYEE, YOUR PENDING SERVICE REQUESTS OR MAKING A NEW SERVICE REQUEST.!");
-  }
+alexaApp.intent("welcomeIntent",
+    function (request, response) {
+        console.log(JSON.stringify(request));
+        response.say("HELLO THERE. I AM AN HDFC ASSISTANT. YOU CAN ASK ME DETAILS ABOUT AN HDFC EMPLOYEE, YOUR PENDING SERVICE REQUESTS OR MAKING A NEW SERVICE REQUEST.!");
+    }
+);
+
+alexaApp.intent("newservicerequestIntent",
+function(request, response) {
+    console.log(JSON.stringify(request));
+    console.log(JSON.stringify(request.slots));
+  response.say("OKAY! REGARDING WHAT ITACHI?");
+}
 );
 
 // app.post("/Nuance", function (req, res) {
