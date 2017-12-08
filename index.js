@@ -37,7 +37,8 @@ alexaApp.express({
   
   alexaApp.intent("employeedetailsIntent",
     function(request, response) {
-        console.log(JSON.stringify(request));
+        // console.log(JSON.stringify(request));
+        console.log(JSON.stringify(request.slots));
       response.say("LET ME SEE. THE MANAGER FOR HDFC MUMBAI OFFICE IS MANOHAR. PLEASE NOTE DOWN HIS CONTACT NUMBER. 9 7 4 8 9 7 8 8 1 2.!");
     }
   );
