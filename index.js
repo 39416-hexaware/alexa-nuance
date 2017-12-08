@@ -29,20 +29,16 @@ alexaApp.express({
   });
 
   alexaApp.launch(function(request, response) {
-    response.say("You launched the app!");
+    response.say("HELLO THERE. I AM AN HDFC ASSISTASNT. YOU CAN ASK ME DETAILS ABOUT AN HDFC EMPLOYEE, YOUR PENDING SERVICE REQUESTS OR MAKING A NEW SERVICE REQUEST.!");
   });
 
-  alexaApp.dictionary = { "names": ["matt", "joe", "bob", "bill", "mary", "jane", "dawn"] };
+//   alexaApp.dictionary = { "names": ["matt", "joe", "bob", "bill", "mary", "jane", "dawn"] };
   
-  alexaApp.intent("welcomeintent", {
-      "slots": { "NAME": "LITERAL" },
-      "utterances": [
-        "my {name is|name's} {names|NAME}", "set my name to {names|NAME}"
-      ]
+  alexaApp.intent("employeedetailsIntent", {
+      "slots": { "NAME": "LITERAL" }
     },
     function(request, response) {
-        console.log(request);
-      response.say("HELLO THERE. I AM AN HDFC ASSISTASNT. YOU CAN ASK ME DETAILS ABOUT AN HDFC EMPLOYEE, YOUR PENDING SERVICE REQUESTS OR MAKING A NEW SERVICE REQUEST.!");
+      response.say("LET ME SEE. THE MANAGER FOR HDFC MUMBAI OFFICE IS MANOHAR. PLEASE NOTE DOWN HIS CONTACT NUMBER. 9 7 4 8 9 7 8 8 1 2.!");
     }
   );
 
