@@ -29,18 +29,25 @@ alexaApp.express({
   });
 
   alexaApp.launch(function(request, response) {
-    response.say("HELLO THERE. I AM AN HDFC ASSISTASNT. YOU CAN ASK ME DETAILS ABOUT AN HDFC EMPLOYEE, YOUR PENDING SERVICE REQUESTS OR MAKING A NEW SERVICE REQUEST.!");
+    console.log(JSON.stringify(request));
+    response.say("HELLO THERE. I AM AN HDFC ASSISTANT. YOU CAN ASK ME DETAILS ABOUT AN HDFC EMPLOYEE, YOUR PENDING SERVICE REQUESTS OR MAKING A NEW SERVICE REQUEST.!");
   });
 
 //   alexaApp.dictionary = { "names": ["matt", "joe", "bob", "bill", "mary", "jane", "dawn"] };
   
-  alexaApp.intent("employeedetailsIntent", {
-      "slots": { "NAME": "LITERAL" }
-    },
+  alexaApp.intent("employeedetailsIntent",
     function(request, response) {
+        console.log(JSON.stringify(request));
       response.say("LET ME SEE. THE MANAGER FOR HDFC MUMBAI OFFICE IS MANOHAR. PLEASE NOTE DOWN HIS CONTACT NUMBER. 9 7 4 8 9 7 8 8 1 2.!");
     }
   );
+
+  alexaApp.intent("welcomeIntent",
+  function(request, response) {
+      console.log(JSON.stringify(request));
+    response.say("HELLO THERE. I AM AN HDFC ASSISTANT. YOU CAN ASK ME DETAILS ABOUT AN HDFC EMPLOYEE, YOUR PENDING SERVICE REQUESTS OR MAKING A NEW SERVICE REQUEST.!");
+  }
+);
 
 // app.post("/Nuance", function (req, res) {
 //     var body = req.body;
