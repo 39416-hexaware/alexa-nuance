@@ -30,7 +30,7 @@ alexaApp.express({
 
 alexaApp.launch(function (request, response) {
     console.log(JSON.stringify(request));
-    response.say("HELLO THERE BAQIR. GET LOST.!")
+    response.say("HELLO THERE BAQIR MOUSE. GET OUT SOON.!")
         .reprompt("You there?");
 });
 
