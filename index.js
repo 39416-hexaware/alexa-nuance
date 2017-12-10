@@ -30,8 +30,8 @@ alexaApp.express({
 
 alexaApp.launch(function (request, response) {
     console.log(JSON.stringify(request));
-    response.say("HELLO THERE. I AM AN HDFC ASSISTANT. YOU CAN ASK ME DETAILS ABOUT AN HDFC EMPLOYEE, YOUR PENDING SERVICE REQUESTS OR MAKING A NEW SERVICE REQUEST.!");
-    response.reprompt("You there?");
+    response.say("HELLO THERE. I AM AN HDFC ASSISTANT. YOU CAN ASK ME DETAILS ABOUT AN HDFC EMPLOYEE, YOUR PENDING SERVICE REQUESTS OR MAKING A NEW SERVICE REQUEST.!")
+        .reprompt("You there?");
 });
 
 //   alexaApp.dictionary = { "names": ["matt", "joe", "bob", "bill", "mary", "jane", "dawn"] };
@@ -40,25 +40,45 @@ alexaApp.intent("employeedetailsIntent",
     function (request, response) {
         // console.log(JSON.stringify(request));
         console.log(JSON.stringify(request.slots));
-        response.say("LET ME SEE. THE MANAGER FOR HDFC MUMBAI OFFICE IS MANOHAR. PLEASE NOTE DOWN HIS CONTACT NUMBER. 9 7 4 8 9 7 8 8 1 2.!");
+        response.say("LET ME SEE. THE MANAGER FOR HDFC MUMBAI OFFICE IS MANOHAR. PLEASE NOTE DOWN HIS CONTACT NUMBER. 9 7 4 8 9 7 8 8 1 2.!")
+            .reprompt("You there?");
     }
 );
 
 alexaApp.intent("welcomeIntent",
     function (request, response) {
         console.log(JSON.stringify(request));
-        response.say("HELLO THERE. I AM AN HDFC ASSISTANT. YOU CAN ASK ME DETAILS ABOUT AN HDFC EMPLOYEE, YOUR PENDING SERVICE REQUESTS OR MAKING A NEW SERVICE REQUEST.!");
+        response.say("HELLO THERE. I AM AN HDFC ASSISTANT. YOU CAN ASK ME DETAILS ABOUT AN HDFC EMPLOYEE, YOUR PENDING SERVICE REQUESTS OR MAKING A NEW SERVICE REQUEST.!")
+            .reprompt("You there?");
     }
 );
 
 alexaApp.intent("newservicerequestIntent",
-function(request, response) {
-    console.log(JSON.stringify(request));
-    console.log(JSON.stringify(request.slots));
-  response.say("OKAY! REGARDING WHAT ITACHI?");
-}
+    function (request, response) {
+        console.log(JSON.stringify(request));
+        console.log(JSON.stringify(request.slots));
+        response.say("OKAY! REGARDING WHAT ITACHI?")
+            .reprompt("You there?");
+    }
 );
 
+alexaApp.intent("requesttypeIntent",
+    function (request, response) {
+        console.log(JSON.stringify(request));
+        console.log(JSON.stringify(request.slots));
+        response.say("PLEASE TELL ME YOUR EMPLOYEE ID")
+            .reprompt("You there?");
+    }
+);
+
+alexaApp.intent("employeeIdIntent",
+    function (request, response) {
+        console.log(JSON.stringify(request));
+        console.log(JSON.stringify(request.slots));
+        response.say("YOUR SERVICE REQUEST HAS BEEN RAISED FOR THE ALLOCATION OF TWO NEW DESKS FOR THE NEW JOINESS")
+            .reprompt("You there?");
+    }
+);
 // app.post("/Nuance", function (req, res) {
 //     var body = req.body;
 //     var alexa = Alexa.handler(req, res);
