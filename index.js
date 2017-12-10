@@ -30,7 +30,7 @@ alexaApp.express({
 
 alexaApp.launch(function (request, response) {
     console.log(JSON.stringify(request));
-    response.say("HELLO THERE. I AM AN HDFC ASSISTANT. YOU CAN ASK ME DETAILS ABOUT AN HDFC EMPLOYEE, YOUR PENDING SERVICE REQUESTS OR MAKING A NEW SERVICE REQUEST.!")
+    response.say("HELLO THERE BAQIR. GET LOST.!")
         .reprompt("You there?");
 });
 
