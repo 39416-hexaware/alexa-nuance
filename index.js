@@ -75,14 +75,14 @@ alexaApp.intent("employeedetailsIntent",
             objEmployeeDetails.Contact = contact;
             objEmployeeDetails.City = city;
 
-            objSSML.say("LET ME SEE.")
-            .break(200)
-            .prosody({ rate: '0.8' })
-            .say("THE MANAGER FOR HDFC "+ city +" OFFICE IS MANOHAR. PLEASE NOTE DOWN HIS "+ contact +" NUMBER. 9 7 4 8 9 7 8 8 1 2.!")
-            .toString({ pretty: true });
-
-            // response.say("LET ME SEE. THE MANAGER FOR HDFC "+ city +" OFFICE IS MANOHAR. PLEASE NOTE DOWN HIS "+ contact +" NUMBER. 9 7 4 8 9 7 8 8 1 2.!")
-            // .reprompt("You there?");
+            // objSSML.say("LET ME SEE.")
+            // .break(200)
+            // .prosody({ rate: '0.8' })
+            // .say("THE MANAGER FOR HDFC "+ city +" OFFICE IS MANOHAR. PLEASE NOTE DOWN HIS "+ contact +" NUMBER. 9 7 4 8 9 7 8 8 1 2.!")
+            // .toString({ pretty: true });
+console.log(response);
+            response.say("LET ME SEE. THE MANAGER FOR HDFC "+ city +" OFFICE IS MANOHAR. PLEASE NOTE DOWN HIS "+ contact +" NUMBER. 9 7 4 8 9 7 8 8 1 2.!")
+            .reprompt("You there?");
         }        
     }
 );
