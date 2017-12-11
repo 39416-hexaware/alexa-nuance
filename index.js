@@ -57,7 +57,7 @@ alexaApp.intent("newservicerequestIntent",
     function (request, response) {
         console.log(JSON.stringify(request));
         console.log(JSON.stringify(request.slots));
-        response.say("OKAY! REGARDING WHAT ITACHI?")
+        response.say("OKAY! REGARDING WHAT?")
             .reprompt("You there?");
     }
 );
@@ -78,6 +78,15 @@ alexaApp.intent("employeeIdIntent",
         response.say("YOUR SERVICE REQUEST HAS BEEN RAISED FOR THE ALLOCATION OF TWO NEW DESKS FOR THE NEW JOINESS")
             .reprompt("You there?");
     }
+);
+
+alexaApp.intent("pendingrequestIntent",
+function (request, response) {
+    console.log(JSON.stringify(request));
+    console.log(JSON.stringify(request.slots));
+    response.say("YOU HAD RAISED THREE SERVICE REQUESTS YESTERDAY. THE ONE FOR A NEW DESKTOP ALLOCATION HAS BEEN APPROVED.")
+        .reprompt("You there?");
+}
 );
 // app.post("/Nuance", function (req, res) {
 //     var body = req.body;
