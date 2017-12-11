@@ -60,7 +60,6 @@ alexaApp.intent("welcomeIntent",
 alexaApp.intent("newservicerequestIntent",
     function (request, response) {
         console.log(JSON.stringify(request));
-        console.log(JSON.stringify(request.slots));
         response.say("OKAY! REGARDING WHAT?")
             .reprompt("You there?");
     }
@@ -70,8 +69,8 @@ alexaApp.intent("requesttypeIntent",
     function (request, response) {
         console.log(objData);
         console.log(JSON.stringify(request));
-        console.log(JSON.stringify(request.slots));
-        objData.RequestType = this.request.slots;
+        // console.log(JSON.stringify(request.slots));
+        objData.RequestType = this.request.slots.Desktop.value;
         response.say("PLEASE TELL ME YOUR EMPLOYEE ID")
             .reprompt("You there?");
     }
@@ -81,8 +80,7 @@ alexaApp.intent("employeeIdIntent",
     function (request, response) {
         console.log(objData);
         console.log(JSON.stringify(request));
-        console.log(JSON.stringify(request.slots));
-        objData.EmployeeId = this.request.slots;
+        objData.EmployeeId = this.request.slots.EmployeeId.value;
         response.say("YOUR SERVICE REQUEST HAS BEEN RAISED FOR THE ALLOCATION OF TWO NEW DESKS FOR THE NEW JOINESS")
             .reprompt("You there?");
     }
