@@ -51,7 +51,7 @@ alexaApp.launch(function (request, response) {
     console.log(JSON.stringify(request));
     response.say("HELLO THERE. I AM AN HDFC ASSISTANT. YOU CAN ASK ME DETAILS ABOUT AN HDFC EMPLOYEE, YOUR PENDING SERVICE REQUESTS OR MAKING A NEW SERVICE REQUEST.!")
         .reprompt("You there?");
-    });
+});
 
 //   alexaApp.dictionary = { "names": ["matt", "joe", "bob", "bill", "mary", "jane", "dawn"] };
 
@@ -60,16 +60,16 @@ alexaApp.intent("employeedetailsIntent",
         // console.log(JSON.stringify(request));
         console.log(JSON.stringify(request.slots.City.value));
         let city = request.slots.City.value;
-        let contact = request.slots.Contact.value;    
+        let contact = request.slots.Contact.value;
         if (city == undefined) {
             objEmployeeDetails.Contact = contact != undefined ? contact : "";
             response.say("PLEASE PROVIDE NAME OF THE CITY.!")
-            .reprompt("You there?");
+                .reprompt("You there?");
         }
         else if (contact == undefined) {
             objEmployeeDetails.City = city != undefined ? city : "";
             response.say("PLEASE TELL ME WHAT DETAIL YOU WANT.!")
-            .reprompt("You there?");
+                .reprompt("You there?");
         }
         else {
             objEmployeeDetails.Contact = contact;
@@ -80,10 +80,10 @@ alexaApp.intent("employeedetailsIntent",
             // .prosody({ rate: '0.8' })
             // .say("THE MANAGER FOR HDFC "+ city +" OFFICE IS MANOHAR. PLEASE NOTE DOWN HIS "+ contact +" NUMBER. 9 7 4 8 9 7 8 8 1 2.!")
             // .toString({ pretty: true });
-console.log(response);
-            response.say("LET ME SEE. THE MANAGER FOR HDFC "+ city +" OFFICE IS MANOHAR. PLEASE NOTE DOWN HIS "+ contact +" NUMBER. 9 7 4 8 9 7 8 8 1 2.!")
-            .reprompt("You there?");
-        }        
+            console.log(JSON.stringify(response.say));
+            response.say("LET ME SEE. THE MANAGER FOR HDFC " + city + " OFFICE IS MANOHAR. PLEASE NOTE DOWN HIS " + contact + " NUMBER. 9 7 4 8 9 7 8 8 1 2.!")
+                .reprompt("You there?");
+        }
     }
 );
 
@@ -130,23 +130,23 @@ alexaApp.intent("employeeIdIntent",
         }
         else if (objRequestData.RequestType == null || objRequestData.RequestType == '') {
             response.say("PLEASE TELL REGARDING WHAT YOU WANT TO MAKE A SERVICE REQUEST?")
-            .reprompt("You there?");
+                .reprompt("You there?");
         }
         else {
             objRequestData.EmployeeId = request.slots.EmployeeId.value;
-            response.say("YOUR SERVICE REQUEST HAS BEEN RAISED FOR THE "+ objRequestData.RequestType +" FOR THE NEW JOINEES UNDER EMPLOYEE ID "+ objRequestData.EmployeeId)
+            response.say("YOUR SERVICE REQUEST HAS BEEN RAISED FOR THE " + objRequestData.RequestType + " FOR THE NEW JOINEES UNDER EMPLOYEE ID " + objRequestData.EmployeeId)
                 .reprompt("You there?");
         }
     }
 );
 
 alexaApp.intent("pendingrequestIntent",
-function (request, response) {
-    console.log(JSON.stringify(request));
-    console.log(JSON.stringify(request.slots));
-    response.say("YOU HAD RAISED THREE SERVICE REQUESTS YESTERDAY. THE ONE FOR A NEW DESKTOP ALLOCATION HAS BEEN APPROVED.")
-        .reprompt("You there?");
-}
+    function (request, response) {
+        console.log(JSON.stringify(request));
+        console.log(JSON.stringify(request.slots));
+        response.say("YOU HAD RAISED THREE SERVICE REQUESTS YESTERDAY. THE ONE FOR A NEW DESKTOP ALLOCATION HAS BEEN APPROVED.")
+            .reprompt("You there?");
+    }
 );
 // app.post("/Nuance", function (req, res) {
 //     var body = req.body;
