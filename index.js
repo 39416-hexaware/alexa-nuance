@@ -31,41 +31,25 @@ alexaApp.express({
 });
 
 alexaApp.launch(function (request, response) {
-    let card = {
-        "card": {
-            "type": "Standard",
-            "title": "This is the Greeting message from HDFC Assistant",
-            "text": "Your ride is on the way to 123 Main Street!\nEstimated cost for this ride: $25",
-            "image": {
-              "smallImageUrl": "https://carfu.com/resources/card-images/race-car-small.png",
-              "largeImageUrl": "https://carfu.com/resources/card-images/race-car-large.png"
-            }
-          }
-      }
+    // let card = {
+    //     "version": "1.0",
+    //     "response": {
+    //       "outputSpeech": {"type":"PlainText","text":"Your Car-Fu car is on the way!"},
+    //       "card": {
+    //         "type": "Standard",
+    //         "title": "Ordering a Car",
+    //         "text": "Your ride is on the way to 123 Main Street!\nEstimated cost for this ride: $25",
+    //         "image": {
+    //           "smallImageUrl": "https://carfu.com/resources/card-images/race-car-small.png",
+    //           "largeImageUrl": "https://carfu.com/resources/card-images/race-car-large.png"
+    //         }
+    //       }
+    //     }
+    //   }
     console.log(JSON.stringify(request));
-    // response.say("HELLO THERE. I AM AN HDFC ASSISTANT. YOU CAN ASK ME DETAILS ABOUT AN HDFC EMPLOYEE, YOUR PENDING SERVICE REQUESTS OR MAKING A NEW SERVICE REQUEST.!")
-    //     .reprompt("You there?");
-
-    response.send(JSON.stringify({
-        "version": "1.0",
-        "response": {
-          "outputSpeech": {"type":"PlainText","text":"Your Car-Fu car is on the way!"},
-          "card": {
-            "type": "Standard",
-            "title": "Ordering a Car",
-            "text": "Your ride is on the way to 123 Main Street!\nEstimated cost for this ride: $25",
-            "image": {
-              "smallImageUrl": "https://carfu.com/resources/card-images/race-car-small.png",
-              "largeImageUrl": "https://carfu.com/resources/card-images/race-car-large.png"
-            }
-          }
-        }
-      }));
+    response.say("HELLO THERE. I AM AN HDFC ASSISTANT. YOU CAN ASK ME DETAILS ABOUT AN HDFC EMPLOYEE, YOUR PENDING SERVICE REQUESTS OR MAKING A NEW SERVICE REQUEST.!")
+        .reprompt("You there?");
     });
-
-    // response.card(card).say("HELLO THERE. I AM AN HDFC ASSISTANT. YOU CAN ASK ME DETAILS ABOUT AN HDFC EMPLOYEE, YOUR PENDING SERVICE REQUESTS OR MAKING A NEW SERVICE REQUEST.!")
-    // .reprompt("You there?");
-    // });
 
 //   alexaApp.dictionary = { "names": ["matt", "joe", "bob", "bill", "mary", "jane", "dawn"] };
 
@@ -82,37 +66,9 @@ alexaApp.intent("employeedetailsIntent",
 
 alexaApp.intent("welcomeIntent",
     function (request, response) {
-        let card = {
-            "card": {
-                "type": "Standard",
-                "title": "This is the Greeting message from HDFC Assistant",
-                "text": "Your ride is on the way to 123 Main Street!\nEstimated cost for this ride: $25",
-                "image": {
-                  "smallImageUrl": "https://carfu.com/resources/card-images/race-car-small.png",
-                  "largeImageUrl": "https://carfu.com/resources/card-images/race-car-large.png"
-                }
-              }
-          }
         console.log(JSON.stringify(request));
-        // response.say("HELLO THERE. I AM AN HDFC ASSISTANT. YOU CAN ASK ME DETAILS ABOUT AN HDFC EMPLOYEE, YOUR PENDING SERVICE REQUESTS OR MAKING A NEW SERVICE REQUEST.!")
-        //     .reprompt("You there?");
-        // response.card(card).say("HELLO THERE. I AM AN HDFC ASSISTANT. YOU CAN ASK ME DETAILS ABOUT AN HDFC EMPLOYEE, YOUR PENDING SERVICE REQUESTS OR MAKING A NEW SERVICE REQUEST.!")
-        //     .reprompt("You there?");
-        response.send(JSON.stringify({
-            "version": "1.0",
-            "response": {
-              "outputSpeech": {"type":"PlainText","text":"Your Car-Fu car is on the way!"},
-              "card": {
-                "type": "Standard",
-                "title": "Ordering a Car",
-                "text": "Your ride is on the way to 123 Main Street!\nEstimated cost for this ride: $25",
-                "image": {
-                  "smallImageUrl": "https://carfu.com/resources/card-images/race-car-small.png",
-                  "largeImageUrl": "https://carfu.com/resources/card-images/race-car-large.png"
-                }
-              }
-            }
-          }));
+        response.say("HELLO THERE. I AM AN HDFC ASSISTANT. YOU CAN ASK ME DETAILS ABOUT AN HDFC EMPLOYEE, YOUR PENDING SERVICE REQUESTS OR MAKING A NEW SERVICE REQUEST.!")
+            .reprompt("You there?");
     }
 );
 
