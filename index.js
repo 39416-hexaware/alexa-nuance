@@ -70,9 +70,15 @@ alexaApp.intent("requesttypeIntent",
         console.log(objData);
         console.log(JSON.stringify(request));
         // console.log(JSON.stringify(request.slots));
-        objData.RequestType = request.slots.DesktopRequest.value;
-        response.say("PLEASE TELL ME YOUR EMPLOYEE ID")
-            .reprompt("You there?");
+        if (request.slots.DesktopRequest == undefined) {
+            response.say("PLEASE TELL REGARDING WHAT YOU WANT TO MAKE A SERVICE REQUEST?")
+                .reprompt("You there?");
+        }
+        else {
+            objData.RequestType = request.slots.DesktopRequest.value;
+            response.say("PLEASE TELL ME YOUR EMPLOYEE ID")
+                .reprompt("You there?");
+        }
     }
 );
 
@@ -80,9 +86,19 @@ alexaApp.intent("employeeIdIntent",
     function (request, response) {
         console.log(objData);
         console.log(JSON.stringify(request.slots));
-        objData.EmployeeId = request.slots.EmployeeId.value;
-        response.say("YOUR SERVICE REQUEST HAS BEEN RAISED FOR THE ALLOCATION OF TWO NEW DESKS FOR THE NEW JOINESS")
+        if (request.slots.DesktopRequest == undefined) {
+            response.say("PLEASE TELL ME YOUR EMPLOYEE ID")
+                .reprompt("You there?");
+        }
+        else if (objData.RequestType == null || objData.RequestType == '') {
+            response.say("PLEASE TELL REGARDING WHAT YOU WANT TO MAKE A SERVICE REQUEST?")
             .reprompt("You there?");
+        }
+        else {
+            objData.EmployeeId = request.slots.EmployeeId.value;
+            response.say("YOUR SERVICE REQUEST HAS BEEN RAISED FOR THE ALLOCATION OF TWO NEW DESKS FOR THE NEW JOINESS")
+                .reprompt("You there?");
+        }
     }
 );
 
