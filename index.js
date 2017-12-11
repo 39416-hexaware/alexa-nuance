@@ -61,16 +61,18 @@ alexaApp.intent("employeedetailsIntent",
         let city = request.slots.City.value;
         let contact = request.slots.Contact.value;    
         if (city == undefined) {
+            objEmployeeDetails.Contact = contact != undefined ? contact : "";
             response.say("PLEASE PROVIDE NAME OF THE CITY.!")
             .reprompt("You there?");
         }
         else if (contact == undefined) {
+            objEmployeeDetails.City = city != undefined ? city : "";
             response.say("PLEASE TELL ME WHAT DETAIL YOU WANT.!")
             .reprompt("You there?");
         }
         else {
-            objEmployeeDetails.Contact = request.slots.Contact.value;
-            objEmployeeDetails.City = request.slots.City.value;
+            objEmployeeDetails.Contact = contact;
+            objEmployeeDetails.City = city;
             response.say("LET ME SEE. THE MANAGER FOR HDFC "+ city +" OFFICE IS MANOHAR. PLEASE NOTE DOWN HIS "+ contact +" NUMBER. 9 7 4 8 9 7 8 8 1 2.!")
             .reprompt("You there?");
         }        
