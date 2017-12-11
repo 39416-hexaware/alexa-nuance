@@ -70,7 +70,7 @@ alexaApp.intent("requesttypeIntent",
         console.log(objData);
         console.log(JSON.stringify(request));
         // console.log(JSON.stringify(request.slots));
-        objData.RequestType = this.request.slots.Desktop.value;
+        objData.RequestType = this.request.slots.DesktopRequest.value;
         response.say("PLEASE TELL ME YOUR EMPLOYEE ID")
             .reprompt("You there?");
     }
