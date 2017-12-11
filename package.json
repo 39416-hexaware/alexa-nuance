@@ -10,6 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "alexa-app": "^4.2.0",
-    "express": "^4.14.0"
+    "express": "^4.14.0",
+    "ssml": "0.0.4"
   }
 }
