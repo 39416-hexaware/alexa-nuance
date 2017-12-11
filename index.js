@@ -61,6 +61,7 @@ alexaApp.launch(function (request, response) {
           }
         }
       }));
+    });
 
     // response.card(card).say("HELLO THERE. I AM AN HDFC ASSISTANT. YOU CAN ASK ME DETAILS ABOUT AN HDFC EMPLOYEE, YOUR PENDING SERVICE REQUESTS OR MAKING A NEW SERVICE REQUEST.!")
     // .reprompt("You there?");
