@@ -7,7 +7,8 @@ var express = require('express');
 // var Alexa = require('alexa-sdk'); // For AWS
 var Alexa = require('alexa-app');
 var objRequest = require('./models/requestdetails');
-var objData = new objRequest.RequestData();
+var objRequestData = new objRequest.RequestData();
+var objEmployeeDetails = new objRequest.EmployeeDetails();
 
 var port = process.env.PORT || 3000;
 //Assign port
@@ -58,9 +59,21 @@ alexaApp.intent("employeedetailsIntent",
         // console.log(JSON.stringify(request));
         console.log(JSON.stringify(request.slots.City.value));
         let city = request.slots.City.value;
-        let contact = request.slots.Contact.value;
-        response.say("LET ME SEE. THE MANAGER FOR HDFC "+ city +" OFFICE IS MANOHAR. PLEASE NOTE DOWN HIS "+ contact +" NUMBER. 9 7 4 8 9 7 8 8 1 2.!")
+        let contact = request.slots.Contact.value;    
+        if (city == undefined) {
+            response.say("PLEASE PROVIDE NAME OF THE CITY.!")
             .reprompt("You there?");
+        }
+        else if (contact == undefined) {
+            response.say("PLEASE TELL ME WHAT DETAIL YOU WANT.!")
+            .reprompt("You there?");
+        }
+        else {
+            objEmployeeDetails.Contact = request.slots.Contact.value;
+            objEmployeeDetails.City = request.slots.City.value;
+            response.say("LET ME SEE. THE MANAGER FOR HDFC "+ city +" OFFICE IS MANOHAR. PLEASE NOTE DOWN HIS "+ contact +" NUMBER. 9 7 4 8 9 7 8 8 1 2.!")
+            .reprompt("You there?");
+        }        
     }
 );
 
@@ -82,7 +95,7 @@ alexaApp.intent("newservicerequestIntent",
 
 alexaApp.intent("requesttypeIntent",
     function (request, response) {
-        console.log(objData);
+        console.log(objRequestData);
         console.log(JSON.stringify(request));
         // console.log(JSON.stringify(request.slots));
         if (request.slots.DesktopRequest == undefined) {
@@ -90,7 +103,7 @@ alexaApp.intent("requesttypeIntent",
                 .reprompt("You there?");
         }
         else {
-            objData.RequestType = request.slots.DesktopRequest.value;
+            objRequestData.RequestType = request.slots.DesktopRequest.value;
             response.say("PLEASE TELL ME YOUR EMPLOYEE ID")
                 .reprompt("You there?");
         }
@@ -99,19 +112,19 @@ alexaApp.intent("requesttypeIntent",
 
 alexaApp.intent("employeeIdIntent",
     function (request, response) {
-        console.log(objData);
+        console.log(objRequestData);
         console.log(JSON.stringify(request.slots));
         if (request.slots.EmployeeId == undefined) {
             response.say("PLEASE TELL ME YOUR EMPLOYEE ID")
                 .reprompt("You there?");
         }
-        else if (objData.RequestType == null || objData.RequestType == '') {
+        else if (objRequestData.RequestType == null || objRequestData.RequestType == '') {
             response.say("PLEASE TELL REGARDING WHAT YOU WANT TO MAKE A SERVICE REQUEST?")
             .reprompt("You there?");
         }
         else {
-            objData.EmployeeId = request.slots.EmployeeId.value;
-            response.say("YOUR SERVICE REQUEST HAS BEEN RAISED FOR THE "+ objData.RequestType +" FOR THE NEW JOINEES UNDER EMPLOYEE ID "+ objData.EmployeeId)
+            objRequestData.EmployeeId = request.slots.EmployeeId.value;
+            response.say("YOUR SERVICE REQUEST HAS BEEN RAISED FOR THE "+ objRequestData.RequestType +" FOR THE NEW JOINEES UNDER EMPLOYEE ID "+ objRequestData.EmployeeId)
                 .reprompt("You there?");
         }
     }
