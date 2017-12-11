@@ -79,7 +79,7 @@ alexaApp.intent("requesttypeIntent",
 alexaApp.intent("employeeIdIntent",
     function (request, response) {
         console.log(objData);
-        console.log(JSON.stringify(request));
+        console.log(JSON.stringify(request.slots));
         objData.EmployeeId = this.request.slots.EmployeeId.value;
         response.say("YOUR SERVICE REQUEST HAS BEEN RAISED FOR THE ALLOCATION OF TWO NEW DESKS FOR THE NEW JOINESS")
             .reprompt("You there?");
