@@ -86,7 +86,7 @@ alexaApp.intent("employeeIdIntent",
     function (request, response) {
         console.log(objData);
         console.log(JSON.stringify(request.slots));
-        if (request.slots.DesktopRequest == undefined) {
+        if (request.slots.EmployeeId == undefined) {
             response.say("PLEASE TELL ME YOUR EMPLOYEE ID")
                 .reprompt("You there?");
         }
