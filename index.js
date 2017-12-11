@@ -49,8 +49,17 @@ alexaApp.launch(function (request, response) {
     //     }
     //   }
     console.log(JSON.stringify(request));
-    response.say("HELLO THERE. I AM AN HDFC ASSISTANT. YOU CAN ASK ME DETAILS ABOUT AN HDFC EMPLOYEE, YOUR PENDING SERVICE REQUESTS OR MAKING A NEW SERVICE REQUEST.!")
-        .reprompt("You there?");
+    // response.say("HELLO THERE. I AM AN HDFC ASSISTANT. YOU CAN ASK ME DETAILS ABOUT AN HDFC EMPLOYEE, YOUR PENDING SERVICE REQUESTS OR MAKING A NEW SERVICE REQUEST.!")
+    //     .reprompt("You there?");
+    response.card({
+        type: "Standard",
+        title: "My Cool Card", // this is not required for type Simple or Standard
+        text: "Your ride is on the way to 123 Main Street!\nEstimated cost for this ride: $25",
+        image: { // image is optional
+          smallImageUrl: "https://carfu.com/resources/card-images/race-car-small.png", // required
+          largeImageUrl: "https://carfu.com/resources/card-images/race-car-large.png"
+        }
+      });
 });
 
 //   alexaApp.dictionary = { "names": ["matt", "joe", "bob", "bill", "mary", "jane", "dawn"] };
