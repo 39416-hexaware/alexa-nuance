@@ -6,6 +6,8 @@ var express = require('express');
 // var request = require('request');
 // var Alexa = require('alexa-sdk'); // For AWS
 var Alexa = require('alexa-app');
+var objRequest = require('./models/requestdetails');
+var objData = new objRequest.RequestData();
 
 var port = process.env.PORT || 3000;
 //Assign port
@@ -39,8 +41,10 @@ alexaApp.launch(function (request, response) {
 alexaApp.intent("employeedetailsIntent",
     function (request, response) {
         // console.log(JSON.stringify(request));
-        console.log(JSON.stringify(request.slots));
-        response.say("LET ME SEE. THE MANAGER FOR HDFC MUMBAI OFFICE IS MANOHAR. PLEASE NOTE DOWN HIS CONTACT NUMBER. 9 7 4 8 9 7 8 8 1 2.!")
+        console.log(JSON.stringify(request.slots.City.value));
+        let city = request.slots.City.value;
+        let contact = request.slots.Contact.value;
+        response.say("LET ME SEE. THE MANAGER FOR HDFC "+ city +" OFFICE IS MANOHAR. PLEASE NOTE DOWN HIS "+ contact +" NUMBER. 9 7 4 8 9 7 8 8 1 2.!")
             .reprompt("You there?");
     }
 );
@@ -64,8 +68,10 @@ alexaApp.intent("newservicerequestIntent",
 
 alexaApp.intent("requesttypeIntent",
     function (request, response) {
+        console.log(objData);
         console.log(JSON.stringify(request));
         console.log(JSON.stringify(request.slots));
+        objData.RequestType = this.request.slots;
         response.say("PLEASE TELL ME YOUR EMPLOYEE ID")
             .reprompt("You there?");
     }
@@ -73,8 +79,10 @@ alexaApp.intent("requesttypeIntent",
 
 alexaApp.intent("employeeIdIntent",
     function (request, response) {
+        console.log(objData);
         console.log(JSON.stringify(request));
         console.log(JSON.stringify(request.slots));
+        objData.EmployeeId = this.request.slots;
         response.say("YOUR SERVICE REQUEST HAS BEEN RAISED FOR THE ALLOCATION OF TWO NEW DESKS FOR THE NEW JOINESS")
             .reprompt("You there?");
     }
