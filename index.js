@@ -96,7 +96,7 @@ alexaApp.intent("employeeIdIntent",
         }
         else {
             objData.EmployeeId = request.slots.EmployeeId.value;
-            response.say("YOUR SERVICE REQUEST HAS BEEN RAISED FOR THE ALLOCATION OF TWO NEW DESKS FOR THE NEW JOINESS")
+            response.say("YOUR SERVICE REQUEST HAS BEEN RAISED FOR THE "+ objData.RequestType +" FOR THE NEW JOINEES UNDER EMPLOYEE ID "+ objData.EmployeeId)
                 .reprompt("You there?");
         }
     }
