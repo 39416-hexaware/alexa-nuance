@@ -5,6 +5,7 @@ var express = require('express');
 // var Alexa = require('alexa-sdk'); // For AWS
 var Alexa = require('alexa-app');
 var SSML = require('ssml');
+var SSMLBuilder = require('ssml-builder');
 
 var objRequest = require('./models/requestdetails');
 var objRequestData = new objRequest.RequestData();
@@ -18,6 +19,7 @@ var app = express();
 
 var alexaApp = new Alexa.app("Nuance-Bot");
 var objSSML = new SSML();
+var objSSMLBuilder = new SSMLBuilder();
 
 alexaApp.express({
     expressApp: app,
@@ -49,17 +51,8 @@ alexaApp.launch(function (request, response) {
     //     }
     //   }
     console.log(JSON.stringify(request));
-    // response.say("HELLO THERE. I AM AN HDFC ASSISTANT. YOU CAN ASK ME DETAILS ABOUT AN HDFC EMPLOYEE, YOUR PENDING SERVICE REQUESTS OR MAKING A NEW SERVICE REQUEST.!")
-    //     .reprompt("You there?");
-    response.card({
-        type: "Standard",
-        title: "My Cool Card", // this is not required for type Simple or Standard
-        text: "Your ride is on the way to 123 Main Street!\nEstimated cost for this ride: $25",
-        image: { // image is optional
-          smallImageUrl: "https://carfu.com/resources/card-images/race-car-small.png", // required
-          largeImageUrl: "https://carfu.com/resources/card-images/race-car-large.png"
-        }
-      });
+    response.say("HELLO THERE. I AM AN HDFC ASSISTANT. YOU CAN ASK ME DETAILS ABOUT AN HDFC EMPLOYEE, YOUR PENDING SERVICE REQUESTS OR MAKING A NEW SERVICE REQUEST.!")
+        .reprompt("You there?");
 });
 
 //   alexaApp.dictionary = { "names": ["matt", "joe", "bob", "bill", "mary", "jane", "dawn"] };
@@ -89,9 +82,21 @@ alexaApp.intent("employeedetailsIntent",
             // .prosody({ rate: '0.8' })
             // .say("THE MANAGER FOR HDFC "+ city +" OFFICE IS MANOHAR. PLEASE NOTE DOWN HIS "+ contact +" NUMBER. 9 7 4 8 9 7 8 8 1 2.!")
             // .toString({ pretty: true });
+
+            objSSMLBuilder.say("LET ME SEE.")
+                .pause('2s')
+                .say("THE MANAGER FOR HDFC " + city + " OFFICE IS MANOHAR. PLEASE NOTE DOWN HIS " + contact + " NUMBER!")
+                .sayAs({
+                    word: "9748978812",
+                    interpret: "telephone"
+                })
+
+            let speechOutput = objSSMLBuilder.ssml(true);
+
             console.log(JSON.stringify(response.say));
-            response.say("LET ME SEE. THE MANAGER FOR HDFC " + city + " OFFICE IS MANOHAR. PLEASE NOTE DOWN HIS " + contact + " NUMBER. 9 7 4 8 9 7 8 8 1 2.!")
-                .reprompt("You there?");
+            response.say(speechOutput);
+            // response.say("LET ME SEE. THE MANAGER FOR HDFC " + city + " OFFICE IS MANOHAR. PLEASE NOTE DOWN HIS " + contact + " NUMBER. 9 7 4 8 9 7 8 8 1 2.!")
+            //     .reprompt("You there?");
         }
     }
 );
@@ -99,18 +104,17 @@ alexaApp.intent("employeedetailsIntent",
 alexaApp.intent("welcomeIntent",
     function (request, response) {
         console.log(JSON.stringify(request));
-        response.card({
-            type: "Standard",
-            title: "My Cool Card", // this is not required for type Simple or Standard
-            text: "Your ride is on the way to 123 Main Street!\nEstimated cost for this ride: $25",
-            image: { // image is optional
-              smallImageUrl: "https://carfu.com/resources/card-images/race-car-small.png", // required
-              largeImageUrl: "https://carfu.com/resources/card-images/race-car-large.png"
-            }
-          });
-
-        // response.say("HELLO THERE. I AM AN HDFC ASSISTANT. YOU CAN ASK ME DETAILS ABOUT AN HDFC EMPLOYEE, YOUR PENDING SERVICE REQUESTS OR MAKING A NEW SERVICE REQUEST.!")
-        //     .reprompt("You there?");
+        // response.card({
+        //     type: "Standard",
+        //     title: "My Cool Card", // this is not required for type Simple or Standard
+        //     text: "Your ride is on the way to 123 Main Street!\nEstimated cost for this ride: $25",
+        //     image: { // image is optional
+        //       smallImageUrl: "https://carfu.com/resources/card-images/race-car-small.png", // required
+        //       largeImageUrl: "https://carfu.com/resources/card-images/race-car-large.png"
+        //     }
+        //   });
+        response.say("HELLO THERE. I AM AN HDFC ASSISTANT. YOU CAN ASK ME DETAILS ABOUT AN HDFC EMPLOYEE, YOUR PENDING SERVICE REQUESTS OR MAKING A NEW SERVICE REQUEST.!")
+            .reprompt("You there?");
     }
 );
 

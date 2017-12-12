@@ -11,6 +11,7 @@
   "dependencies": {
     "alexa-app": "^4.2.0",
     "express": "^4.14.0",
-    "ssml": "0.0.4"
+    "ssml": "0.0.4",
+    "ssml-builder": "^0.4.1"
   }
 }
